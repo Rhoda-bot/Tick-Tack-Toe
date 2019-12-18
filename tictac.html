@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tictactoe</title>
+</head>
+<body>
+    <div>
+            <center>
+        <table class="table" style="border:10px solid rgba(13, 16, 187, 0.377)">
+            <tr>
+                <td id="0" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="1" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="2" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+            </tr>
+            <tr>
+                    <h1>Tictactoe</h1>
+                <td id="3"  value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="4" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="5" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+            </tr>
+            <tr>
+                <td id="6" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="7" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+                <td id="8" value="" onclick="showMe(event)" style="background-color: dodgerblue; border:none; width:50px; height:50px"></td>
+            </tr>
+        </center>
+        </table>
+        <input type="button" id="exit" value="Play Again" onclick="if(win||over) {window.location.reload()}">
+    </div>
+    <div id="score"></div>
+</body>
+<script>
+    
+    x=["","","","","","","","",""];
+    var a=true, over=false, win=false, winner=false;
+
+function how(){
+    play(x[0], x[1], x[2]);
+    play(x[3], x[4], x[5]);
+    play(x[6], x[7], x[8]);
+    play(x[0], x[3], x[6]);
+    play(x[1], x[4], x[7]);
+    play(x[2], x[5], x[8]);
+    play(x[0], x[4], x[8]);
+    play(x[2], x[4], x[6]);
+}
+function play(a,b,c) {
+    if(a != '' && b != '' && c != '') {
+        if(a ===b && b === c) {
+            score.innerHTML = "Successful";
+            win = true;
+            winner = true;
+            return;
+          
+        }
+        else if(a===!b && b===!c){
+            score.innerHTML="you lose";
+            win=false;
+            winner=false;
+
+} 
+        else {
+            over = true;
+            return win = false;
+        }
+    }
+}
+function des(a,b){
+    return x[a]=b;
+}
+function showMe(e){
+    if(!win && !winner) {
+        if (a && e.target.innerHTML == '') {
+            a = false;
+            e.target.innerText = 'x';
+            des(e.target.id, 'x');
+        } else if (!a && e.target.innerHTML == '') {
+            a = true;
+            e.target.innerText = 'o';
+            des(e.target.id, 'o');
+        }
+        
+        how();
+    }
+   
+}
+
+
+</script>
+</html>
